@@ -77,10 +77,10 @@
 
         $dialogBox = $("#dialog-container");
 
-        // initial Connecion
+        // initial Connecion to AI Platform
         initDialogflow();
 
-        // using HTML5 Speech API
+        // using HTML5 Speech API - SpeechRecognization
         if ( typeof webkitSpeechRecognition !== "undefined" ) {
           $grayBtn.hide();
           $recBtn.show();
@@ -91,6 +91,12 @@
           $recBtn.hide();
           $grayBtn.show();
         }
+
+        // using HTML5 Speech API - SpeechSynthesis
+        // if ( typeof speechSynthesis !== "undefined" ) {
+        //  var msg = new SpeechSynthesisUtterance();
+        //  var voices = window.speechSynthesis.getVoices();
+        // }
 
         // Press Enter Key to Send!
         $speechInput.keypress(function(event) {
@@ -146,13 +152,26 @@
               result = response.result.fulfillment.speech;
               $dialogBox.append('<div class="inText"><div class="inTextLeft"><img class="img-circle" src="/images/albee32.png"> </div><div class="inTextRight">' + result + '</div></div>');
               $dialogBox.scrollTop($dialogBox[0].scrollHeight);
+
+              // testing Speech
+              if (typeof speechSynthesis !== "undefined" ) {
+                var msg = new SpeechSynthesisUtterance();
+                var voices = window.speechSynthesis.getVoices();
+                msg.text = result;
+                speechSynthesis.speak(msg);
+                msg = null;
+                speechSynthesis = null;
+              } else {
+                alert('Something goes wrong: speechSynthesis');
+              }
+
             } catch(error) {
               $dialogBox.append('<div class="inText"><div class="inTextLeft"><img class="img-circle" src="/images/albee32.png"> </div><div class="inTextRight">' + "Sorry. No Answer! Please try again!" + '</div></div>');
             }
 
           })
           .catch(function(err) {
-            alert ("Something goes wrong");
+            alert ("Something goes wrong: Bot Engine");
           });
 
         }
@@ -181,7 +200,7 @@
 
           <div id="dialog-container">
 
-            <div class="inText"><div class="inTextLeft"><img class="img-circle" src="/images/albee32.png"></div><div class="inTextRight">Weclome to AlBee Chatbor - your Smart Virtual Assistant!</div></div>
+            <div class="inText"><div class="inTextLeft"><img class="img-circle" src="/images/albee32.png"></div><div class="inTextRight"><%= messageoftheday %></div></div>
 
           </div>
 

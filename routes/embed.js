@@ -2,10 +2,10 @@ var express = require('express');
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/Example', function(req, res, next) {
 
 
-  res.render('index', {
+  res.render('embedExample', {
     title: 'AlBeeChatbot',
     messageoftheday: 'Weclome to AlBee Chatbot - your Smart Virtual Assistant!'
   });
