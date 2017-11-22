@@ -6,14 +6,19 @@ AlBee Chatbot is designed with a fully optimized conversational UX (User Experie
 ---
 
 **Full Web Example**
+
+
 ![alt text](https://github.com/ArtificialIntelligenceBot/AlBeeChatbot/blob/master/public/images/github/ex_web.png?raw=true "Full Web")
 
+
 **Mobile (Progressive Web) App Example**
+
 ![alt text](https://github.com/ArtificialIntelligenceBot/AlBeeChatbot/blob/master/public/images/github/ex_pwa_mobile.png?raw=true "PRA Mobile")
 
-**Embedded Example**
-![alt text](https://github.com/ArtificialIntelligenceBot/AlBeeChatbot/blob/master/public/images/github/ex_embed.png?raw=true "Embeded")
 
+**Embedded Example**
+
+![alt text](https://github.com/ArtificialIntelligenceBot/AlBeeChatbot/blob/master/public/images/github/ex_embed.png?raw=true "Embeded")
 
 ***
 
