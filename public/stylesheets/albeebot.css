@@ -1,0 +1,235 @@
+/* HTML Styling */
+body {
+  font-family: 'Roboto', 'Anton', sans-serif, 'Tangerine';
+}
+
+/* Main Layout */
+.albeechatbot {
+    display: block;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.albeechatbot.open {
+   display: block;
+}
+
+.albeechatbot.close {
+   display: hidden;
+}
+
+.albeechatbot__header {
+  bottom: 0;
+  background: #4267b2;
+  height: 42px;
+  border-bottom: 2px solid #d3d3d3;
+  font-family:  'Anton', 'Roboto', sans-serif, 'Tangerine';
+}
+
+.albeechatbot__footer {
+    height: 100px;
+}
+
+.albeechatbot__content,
+.albeechatbot__footer {
+    position: absolute;
+    width: 100%;
+}
+
+.albeechatbot__content {
+    bottom:100px;
+    top: 42px;
+    overflow-y: auto;
+    padding: 0px 10px 0px 10px;
+}
+
+.albeechatbot__footer {
+    bottom: 0;
+    background: #fff;
+}
+
+/* Bootstrap */
+.navbar-brand {
+  font-size: 2em;
+  padding: 0px 0px 0px 0px;
+  color: #fff;
+}
+
+.navbar-header {
+  padding: 5px 20px 5px 20px;
+}
+
+/* Special effects - Optional */
+.shadow {
+  -webkit-box-shadow: 0 6px 4px -4px black;
+  -moz-box-shadow: 0 6px 4px -4px black;
+  box-shadow: 0 6px 4px -4px black;
+}
+
+.icon48 {
+  font-size: 2em;
+  color: #fff;
+}
+
+/* Dialog Box */
+#conversation-container {
+  min-height:100%;
+  position:relative;
+}
+
+#dialog-container {
+  position: fixed;
+  top: 64px;
+  bottom: 120px;
+  left: 0;
+  right: 0;
+  overflow: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+  .rightHeader {
+    width: 180px;
+    float: right;
+    padding-top: 10px;
+    text-align: right;
+  }
+
+  .leftHeader {
+      float: none;
+      width: auto;
+      overflow: hidden;
+      padding-left: 10px;
+  }
+
+  .inText {
+    width: 80%;
+    margin-bottom: 5px;
+    position:relative;
+    float:left;
+  }
+
+  .inTextLeft {
+    float: left; /* <-- fixes the left panel to prevent from scrolling */
+    width:72px;
+    text-align: left;
+  }
+
+  .inTextRight {
+    margin-left:72px;
+    background:yellow;
+    border: 1px solid #000;
+    background: #f1f0ea;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .outText {
+   width: 80%;
+   position:relative;
+   float:right;
+   margin-bottom: 5px;
+   color: #fff;
+  }
+
+  .outTextLeft {
+    float:left;
+    width:100%;
+  }
+
+  .outTextLeftInside {
+    margin-right: 72px;
+    border: 1px solid #73AD21;
+    background: #0084ff;
+    border-radius: 10px;
+    padding: 10px;
+
+  }
+
+  .outTextLRight {
+    float: right;
+    width: 72px;
+    margin-left: -72px;
+    border: solid;
+  }
+  
+/* Input Form */
+#input-container {
+  margin: auto;
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:100px;
+  text-align: center;
+}
+
+#input-box {
+  margin: auto;
+  width: 95%;
+}
+
+.textInput {
+  border: 0px;
+  width: 100%;
+  height: 32px;
+  font-size: 1em;
+  border-bottom: solid 0.5px;
+}
+
+.inputForm {
+  width: 100%;
+}
+
+#inputSend {
+  color: #6496c8;
+  background: rgba(0,0,0,0);
+  border: solid 1px #6496c8;
+}
+
+#inputSend:hover {
+  color: #FFF;
+  background-color: #346392;
+  text-shadow: -1px 1px #27496d;
+}
+
+.rightInput {
+  width: 60px;
+  float: right;
+  padding-top: 10px;
+  text-align: right;
+}
+
+.leftInput {
+    float: none;
+    width: auto;
+    overflow: hidden;
+    padding-left: 10px;
+}​​
+
+.imageMiddle {
+  vertical-align: middle;
+}
+
+.imageTop {
+  vertical-align: top;
+}
+
+.imageBottom {
+  vertical-align: bottom;
+}
+
+
+.voiceAction {
+  padding-top: 5px;
+  padding-bottom: 0px;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}

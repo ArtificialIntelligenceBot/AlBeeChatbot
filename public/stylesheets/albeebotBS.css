@@ -1,0 +1,128 @@
+::-webkit-scrollbar {
+    display: none;
+}
+
+html,body{
+    height: 100%;
+}
+
+.navbar-fixed-top {
+    height: 50px; /* must not use percents here, must be 80px*/
+    background-color: #4267b2;
+    border-bottom: 2px solid #d3d3d3;
+}
+
+.navbar-fixed-top img {
+  padding: 0px;
+}
+
+.navbar-fixed-bottom{
+    -background-color: #E9EBEE;
+    height: 100px; /* must not use percents here, must be 60px*/
+    -border-top: 2px solid #d3d3d3;
+}
+
+#chatbox {
+    position: fixed;
+    top:50px;
+    bottom: 100px;
+    left: 0;
+    right: 0;
+    overflow:auto;
+}
+
+#chatbox .row{
+    border-bottom: 2px solid #d3d3d3;
+    background-color: gray;
+    margin: 50px 0px 0px 0px;
+}
+
+.navbar-brand {
+  padding: 5px 0px 0px 0px;
+}
+
+.navbar-header {
+  padding: 0px 20px 5px 20px;
+}
+
+.icon48 {
+  font-size: 1em;
+  color: #4267b2;
+}
+
+#input-container {
+  margin: auto;
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:100px;
+  text-align: center;
+}
+
+#input-box {
+  margin: auto;
+  width: 95%;
+}
+
+.textInput {
+  border: 0px;
+  width: 100%;
+  height: 32px;
+  font-size: 1em;
+  border-bottom: solid 0.5px;
+}
+
+.inputForm {
+  width: 100%;
+}
+
+#inputSend {
+  color: #6496c8;
+  background: rgba(0,0,0,0);
+  border: solid 1px #6496c8;
+}
+
+#inputSend:hover {
+  color: #FFF;
+  background-color: #346392;
+  text-shadow: -1px 1px #27496d;
+}
+
+.rightInput {
+  width: 60px;
+  float: right;
+  padding-top: 10px;
+  text-align: right;
+}
+
+.leftInput {
+    float: none;
+    width: auto;
+    overflow: hidden;
+    padding-left: 10px;
+}​​
+
+.imageMiddle {
+  vertical-align: middle;
+}
+
+.imageTop {
+  vertical-align: top;
+}
+
+.imageBottom {
+  vertical-align: bottom;
+}
+
+
+.voiceAction {
+  padding-top: 5px;
+  padding-bottom: 0px;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}

@@ -14,7 +14,6 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -22,6 +21,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// bootstrap -- mt8168
+app.use('/stylesheets/bootstrap/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css')));
+app.use('/stylesheets/bootstrap/fonts', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/fonts')));
+app.use('/javascripts/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js')));
+
+// routers -- mt8168
 app.use('/', index);
 app.use('/users', users);
 
