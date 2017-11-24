@@ -1,5 +1,7 @@
 # AlBeeChatbot - Flexknow/ArtificialIntelligenceBot
 
+```__For derivatives or redistribution of this opensource work, please include the support message (SUPPORT.md) below.```
+
 ## What is AlBeeChatbot
 AlBee Chatbot is a feature-rich Customer Engagement platform designed to deliver great customer experience through its optimized Conversational UX (User Experience) and Interact Analysis — gaining genuine insight into the mind-set of their target audience. AlBee Chatbot further connects customers with its integrated Branding and Marketing Messaging tools.
 
@@ -31,6 +33,8 @@ It is readlly just for fun. **Al** = Albert (my son) with his favor (**Bee**) co
 ![alt text](https://github.com/ArtificialIntelligenceBot/AlBeeChatbot/blob/master/public/images/albee128.png?raw=true?raw=true "Logo AlBee Chatbot App")
 
 ---
+**We support children and adults with disabilities and special needs.**
+
 May I invite you to learn more about **Angelman syndrome**?
 ```Angelman syndrome (AS) is a rare neuro-genetic disorder that occurs in one in 15,000 live births. Angelman syndrome is often misdiagnosed as cerebral palsy or autism due to lack of awareness. Characteristics of the disorder include developmental delay, lack of speech, seizures, and walking and balance disorders. Individuals with Angelman syndrome will require life-long care.```
 
