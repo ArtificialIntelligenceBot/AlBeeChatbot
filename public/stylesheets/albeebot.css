@@ -1,6 +1,7 @@
 /* HTML Styling */
 body {
   font-family: 'Roboto', 'Anton', sans-serif, 'Tangerine';
+  font-size: 1.2em;
 }
 
 /* Main Layout */
@@ -51,6 +52,14 @@ body {
     background: #fff;
 }
 
+.iconSpeech {
+  width: 32px;
+}
+
+.albNavIcon {
+  width: 32px;
+}
+
 /* Bootstrap */
 .navbar-brand {
   font-size: 2em;
@@ -69,7 +78,7 @@ body {
   box-shadow: 0 6px 4px -4px black;
 }
 
-.icon48 {
+.iconNav {
   font-size: 2em;
   color: #fff;
 }
@@ -82,8 +91,8 @@ body {
 
 #dialog-container {
   position: fixed;
-  top: 64px;
-  bottom: 120px;
+  top: 58px; /* 42 + 16 */
+  bottom: 116px; /* 100 + 16 */
   left: 0;
   right: 0;
   overflow: auto;
@@ -155,7 +164,7 @@ body {
     margin-left: -72px;
     border: solid;
   }
-  
+
 /* Input Form */
 #input-container {
   margin: auto;

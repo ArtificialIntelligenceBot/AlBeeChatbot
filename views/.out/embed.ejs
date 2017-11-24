@@ -28,9 +28,7 @@
      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <!-- Style Selection based on the Screen Size -->
-    <link rel="stylesheet" media="screen and (min-width: 320px)" href="/stylesheets/albeebot.css" />
-    <link rel='stylesheet' media='screen and (max-width: 319px)' href='/stylesheets/albeebotEmbed.css' />
+    <link rel="stylesheet" href='/stylesheets/albeebotEmbed.css'>
 
     <!-- Progress Web App // -->
     <link rel="manifest" href="/manifest.json">
@@ -184,19 +182,7 @@
   <body>
     <div class="albeechatbot">
         <div class="albeechatbot__header">
-          <div class="navbar navbar-blend navbar-fixed-top">
-            <div class="navbar-header pull-left">
-              <a class="navbar-brand" href="#">
-                <span class="albLogo"><img class="albNavIcon" src="/images/albee32.png" class="shadow"/> AlBee Chatbot </span>
-              </a>
-            </div>
-            <div class="navbar-header pull-right">
-              <a href="javascript:aboutalbeechatbot();">
-                <span class="glyphicon glyphicon-th iconNav"></span>
-              </a>
-            </div>
-          </div>
-
+            <span class="glyphicon glyphicon-th icon16"></span>
         </div>
         <div class="albeechatbot__content">
 
@@ -220,8 +206,8 @@
                   </div>
                 </div>
                 <div class="voiceAction">
-                  <img class="iconSpeech" id="enableSpeech" class="imageMiddle" src="images/blueMic32.png" />
-                  <img class="iconSpeech" id="disableSpeech" class="imageMiddle" src="images/grayMic32.png" />
+                  <img id="enableSpeech" class="imageMiddle" src="images/blueMic32.png" />
+                  <img id="disableSpeech" class="imageMiddle" src="images/grayMic32.png" />
                 </div>
                 <small style="font-size: .75em;">Albee Chatbot is <a href="#">an opensoure project</a> / Copyright (c) 2017 by <a href="mailto:mt8168@gmail.com">Max Tsai</a> </small>
             </div>
