@@ -1,6 +1,6 @@
 # AlBeeChatbot - Flexknow/ArtificialIntelligenceBot
 
-```__For derivatives or redistribution of this opensource work, please include the support message (SUPPORT.md) below.```
+```__For derivatives or redistribution of this opensource work, please include the support message (SUPPORT.md) below.__```
 
 ## What is AlBeeChatbot
 AlBee Chatbot is a feature-rich Customer Engagement platform designed to deliver great customer experience through its optimized Conversational UX (User Experience) and Interact Analysis — gaining genuine insight into the mind-set of their target audience. AlBee Chatbot further connects customers with its integrated Branding and Marketing Messaging tools.
