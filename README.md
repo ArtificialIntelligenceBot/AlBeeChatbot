@@ -1,7 +1,11 @@
 # AlBeeChatbot - Flexknow/ArtificialIntelligenceBot
 
 ## What is AlBeeChatbot
-AlBee Chatbot is designed with a fully optimized conversational UX (User Experience) to improve customer engagement. AlBee is a customer service platform designed to be taking advantage of (plug and play) commercial and opensource artificial intelligence and machine learning systems, i.e. DialogFlow or RASA.
+AlBee Chatbot is a feature-rich Customer Engagement platform designed to deliver great customer experience through its optimized Conversational UX (User Experience) and Interact Analysis — gaining genuine insight into the mind-set of their target audience. AlBee Chatbot further connects customers with its integrated Branding and Marketing Messaging tools.
+
+AlBee Chatbot intent to provide continue integration with Commercial and Opensource Artificial Intelligence and Machine Learning platforms, i.e. DialogFlow or RASA.
+
+More information: [impact](https://www.angelman.org/make-an-impact/)](https://medium.com/@maxtsai/albee-ae050d744de6)
 
 ---
 

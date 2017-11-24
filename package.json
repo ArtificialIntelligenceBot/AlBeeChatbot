@@ -3,13 +3,18 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "startmon": "nodemon ./bin/www"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ArtificialIntelligenceBot/AlBeeChatbot.git"
   },
-  "keywords": ["Artificail Intelligence", "Chatbot", "AlBeeChatbot"],
+  "keywords": [
+    "Artificail Intelligence",
+    "Chatbot",
+    "AlBeeChatbot"
+  ],
   "author": "mt8168@gmail.com",
   "license": "MIT",
   "bugs": {
@@ -24,6 +29,10 @@
     "ejs": "~2.5.7",
     "express": "~4.15.5",
     "morgan": "~1.9.0",
-    "serve-favicon": "~2.4.5"
+    "serve-favicon": "~2.4.5",
+    "sqlite3": "^3.1.13"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
   }
 }

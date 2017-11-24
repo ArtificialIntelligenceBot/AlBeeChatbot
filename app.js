@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var embed = require('./routes/embed');
+var plugins = require('./routes/plugins/index');
+var plugin_max = require('./routes/plugins/max');
 
 
 var app = express();
@@ -31,6 +33,8 @@ app.use('/javascripts/bootstrap', express.static(path.join(__dirname, 'node_modu
 // routers -- mt8168
 app.use('/', index);
 app.use('/embed', embed);
+app.use('/plugins', plugins);
+app.use('/plugins/max', plugin_max);
 app.use('/users', users);
 
 // catch 404 and forward to error handler

@@ -83,6 +83,12 @@
         initDialogflow();
 
         // using HTML5 Speech API - SpeechRecognization
+        /*
+        var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
+        var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
+        var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
+        */
+
         if ( typeof webkitSpeechRecognition !== "undefined" ) {
           $grayBtn.hide();
           $recBtn.show();
