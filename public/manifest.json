@@ -1,0 +1,39 @@
+{
+  "name": "AlBeeChatbot - An A.I. Chatbot",
+  "short_name": "AlBeeChatbot",
+  "description": "AlBeeChatbot - An A.I. Chatbot by Max Tsai",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/images/albee32.png",
+      "type": "image/png",
+      "sizes": "32x32"
+    },
+    {
+      "src": "/images/albee48.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "/images/albee64.png",
+      "type": "image/png",
+      "sizes": "64x64"
+    },
+    {
+      "src": "/images/albee96.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "images/albee128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "images/albee256.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    }
+  ],
+  "start_url": "index.html?launcher=true"
+}

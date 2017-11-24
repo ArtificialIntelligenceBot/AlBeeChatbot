@@ -1,0 +1,192 @@
+<!--
+/**
+ * -----------------------------------------------
+ *
+ * AlBeeCharbot - an Opensource A.I. Chatbot
+ * ==  A Smart Virtual Stduent Assistant ==
+ * https://github.com/ArtificialIntelligenceBot/AlBeeChatbot
+ *
+ * -----------------------------------------------
+ *
+ * App Frontend:
+ *   - node.js (https://nodejs.org)
+ *   - Progressive Web App (https://en.wikipedia.org/wiki/Progressive_web_app)
+ * A.I.
+ *   Google - DialogFlow aka. API.ai (https://dialogflow.com)
+ *   work in progress:
+ *     - RASA (https://rasa.ai/)
+ *     - AWS Lex (https://aws.amazon.com/lex)
+ * -----------------------------------------------
+ *
+ * This source code is licensed under the BSD-style license.
+ * Copyright 2007- by Max Tsai (mt8168@gmail.com)
+ *
+ */
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AlBee Chatbot - By Max Tsai</title>
+  <link rel="stylesheet" type="text/css" href="default.css">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap/css/bootstrap-theme.min.css">
+
+
+  <!-- TODO add manifest here -->
+  <link rel="manifest" href="/manifest.json">
+  <!-- Add to home screen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="AlBee Chatbot">
+  <link rel="apple-touch-icon" href="/images/albee96.png">
+  <meta name="msapplication-TileImage" content="/images/albee128.png">
+  <meta name="msapplication-TileColor" content="#002D72">
+
+  <script src="/javascripts/jquery-3.2.1.min.js"></script>
+  <script src="/javascripts/ApiAi.js"></script>
+  <script src="/javascripts/dialogflow.js"></script>
+
+  <script src="/javascripts/bootstrap/bootstrap.min.js"></script>
+
+  <script>
+
+    $(document).ready(function() {
+
+      $speechInput = $("#inputAsk");
+      $recBtn = $("#enableSpeech");
+      $aiBtn = $("#inputSend");
+      $grayBtn = $("#disableSpeech");
+
+      $dialogBox = $("#dialog-container");
+
+      // initial Connecion
+      initDialogflow();
+
+      if ( typeof webkitSpeechRecognition !== "undefined" ) {
+        $grayBtn.hide();
+        $recBtn.show();
+        var recognition = new webkitSpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = false;
+      } else {
+        $recBtn.hide();
+        $grayBtn.show();
+      }
+
+      $speechInput.keypress(function(event) {
+        if (event.which == 13) {
+          event.preventDefault();
+          $dialogBox.append('<div class="outText"><div class="outTextLeft"><div class="outTextLeftInside">' + $speechInput.val() + '</div></div><div class="outTextLRight"> <img class="img-circle" src="/images/guest.png" width="32px"> ' + "</div></div>");
+          $dialogBox.scrollTop($dialogBox[0].scrollHeight);
+          getResponse($speechInput.val());
+          $speechInput.val('');
+          $speechInput.attr("placeholder", "Type your question ..");
+        }
+      });
+
+      $speechInput.on("click", function(event) {
+          $speechInput.val('');
+      });
+
+      $recBtn.on("click", function(event) {
+        $speechInput.val('Listening');
+        switchRecognition();
+        $recBtn.attr('src', '/images/redMic32.png');
+      });
+
+
+      $aiBtn.on("click", function(event) {
+        // $dialogBox.append('<div class="inText"><b> You: </b>' + $speechInput.val() + "</div>");
+        $dialogBox.append('<div class="outText"><div class="outTextLeft"><div class="outTextLeftInside">' + $speechInput.val() + '</div></div><div class="outTextLRight"> <img class="img-circle" src="/images/guest.png" width="32px"> ' + "</div></div>");
+        getResponse($speechInput.val());
+        $speechInput.val('Type your question .. ');
+      });
+
+      function switchRecognition() {
+        recognition.onresult = function(event) {
+          var text = "";
+            for (var i = event.resultIndex; i < event.results.length; ++i) {
+              text += event.results[i][0].transcript;
+          }
+          console.log(text);
+          $speechInput.val(text);
+          $recBtn.attr('src', '/images/blueMic32.png');
+          $aiBtn.click();
+        }
+        recognition.start();
+      }
+
+      function getResponse(value) {
+
+        sendText(value)
+        .then(function(response) {
+          var result;
+          try {
+            result = response.result.fulfillment.speech;
+            $dialogBox.append('<div class="inText"><div class="inTextLeft"><img class="img-circle" src="/images/albee32.png"> </div><div class="inTextRight">' + result + '</div></div>');
+            $dialogBox.scrollTop($dialogBox[0].scrollHeight);
+          } catch(error) {
+            $dialogBox.append('<div class="inText"><div class="inTextLeft"><img class="img-circle" src="/images/albee32.png"> </div><div class="inTextRight">' + "Sorry. No Answer! Please try again!" + '</div></div>');
+          }
+
+        })
+        .catch(function(err) {
+          alert ("Something goes wrong");
+        });
+
+      }
+    });
+  </script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/service-worker.js');
+      });
+    }
+  </script>
+
+</head>
+<body>
+
+  <header class="header" style="text-align: left;">
+    <h1 class="header__title"><div class="rightHeader">AlBee Chatbot</div><div class="leftHeader"><img src="/images/AlBeeAIChatbot48.png" class="imageMiddle"/></div></h1>
+  </header>
+
+  <main class="main">
+    <div id="conversation-container">
+
+      <div id="dialog-container">
+
+        <div class="inText"><div class="inTextLeft"><img class="img-circle" src="/images/albee32.png"></div><div class="inTextRight">Weclome to AlBee Chatbor - your Smart Virtual Assistant!</div></div>
+
+      </div>
+
+      <div id="input-container">
+        <div id="input-box">
+            <div class="inputForm">
+              <div class="rightInput">
+                <button id="inputSend" type="button">Send!</button>
+              </div>
+              <div class="leftInput">
+                <input type="text" id="inputAsk" class="textInput" value="" placeholder="Type your question .. " />
+              </div>
+            </div>
+            <div class="voiceAction">
+              <img id="enableSpeech" class="imageMiddle" src="/images/blueMic32.png" />
+              <img id="disableSpeech" class="imageMiddle" src="/images/grayMic32.png" />
+            </div>
+            <small style="font-size: .75em;">Albee Chatbot is <a href="#">an opensoure project</a> / Copyright (c) 2017 by <a href="mailto:mt8168@gmail.com">Max Tsai</a> </small>
+        </div>
+      </div>
+
+
+    </div>
+  </main>
+
+
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link href="/favicon.ico" rel="icon">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Anton|Roboto|Tangerine" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href='/stylesheets/bootstrap/css/bootstrap.min.css'>
+    <!--
+      <link rel="stylesheet" href='/stylesheets/bootstrap/css/bootstrap-theme.min.css'>
+    -->
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="/stylesheets/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="/javascripts/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Style Selection based on the Screen Size -->
+    <link rel="stylesheet" media="screen and (min-width: 320px)" href="/stylesheets/albeebot.css" />
+    <link rel='stylesheet' media='screen and (max-width: 319px)' href='/stylesheets/albeebotEmbed.css' />
+
+    <!-- Progress Web App // -->
+    <link rel="manifest" href="/manifest.json">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="AlBee Chatbot">
+    <link rel="apple-touch-icon" href="/images/albee96.png">
+    <meta name="msapplication-TileImage" content="/images/albee128.png">
+    <meta name="msapplication-TileColor" content="#002D72">
+    <!-- // Progress Web App -->
+
+
+    <script src="/javascripts/jquery-3.2.1.min.js"></script>
+    <script src="/javascripts/ApiAi.js"></script>
+    <script src="/javascripts/dialogflow.js"></script>
+    <script src="/javascripts/bootstrap/bootstrap.min.js"></script>
+
+
+    <!-- Progress Web App // -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/service-worker.js');
+        });
+      }
+    </script>
+    <!-- // Progress Web App -->
+
+    <script type="text/javascript">
+      function aboutalbeechatbot() {
+        var answer = confirm ("AlBee (A.I.) Chatbot is an open source project. Please click on OK for more information.")
+        if (answer)
+        window.location="https://github.com/ArtificialIntelligenceBot/AlBeeChatbot";
+      }
+    </script>
+
+    <script>
+
+      $(document).ready(function() {
+
+        $speechInput = $("#inputAsk");
+        $recBtn = $("#enableSpeech");
+        $aiBtn = $("#inputSend");
+        $grayBtn = $("#disableSpeech");
+
+        $dialogBox = $("#dialog-container");
+
+        // initial Connecion to AI Platform
+        initDialogflow();
+
+        // using HTML5 Speech API - SpeechRecognization
+        if ( typeof webkitSpeechRecognition !== "undefined" ) {
+          $grayBtn.hide();
+          $recBtn.show();
+          var recognition = new webkitSpeechRecognition();
+          recognition.continuous = false;
+          recognition.interimResults = false;
+        } else {
+          $recBtn.hide();
+          $grayBtn.show();
+        }
+
+        // using HTML5 Speech API - SpeechSynthesis
+        // if ( typeof speechSynthesis !== "undefined" ) {
+        //  var msg = new SpeechSynthesisUtterance();
+        //  var voices = window.speechSynthesis.getVoices();
+        // }
+
+        // Press Enter Key to Send!
+        $speechInput.keypress(function(event) {
+          if (event.which == 13) {
+            event.preventDefault();
+            $dialogBox.append('<div class="outText"><div class="outTextLeft"><div class="outTextLeftInside">' + $speechInput.val() + '</div></div><div class="outTextLRight"> <img class="img-circle" src="/images/guest.png" width="32px"> ' + "</div></div>");
+            $dialogBox.scrollTop($dialogBox[0].scrollHeight);
+            getResponse($speechInput.val());
+            $speechInput.val('');
+            $speechInput.attr("placeholder", "Type your question ..");
+          }
+        });
+
+        // This might not be necessary anymore - updated with Placeholder
+        $speechInput.on("click", function(event) {
+            $speechInput.val('');
+        });
+
+        $recBtn.on("click", function(event) {
+          $speechInput.val('Listening');
+          switchRecognition();
+          $recBtn.attr('src', '/images/redMic32.png');
+        });
+
+
+        $aiBtn.on("click", function(event) {
+          // $dialogBox.append('<div class="inText"><b> You: </b>' + $speechInput.val() + "</div>");
+          $dialogBox.append('<div class="outText"><div class="outTextLeft"><div class="outTextLeftInside">' + $speechInput.val() + '</div></div><div class="outTextLRight"> <img class="img-circle" src="/images/guest.png" width="32px"> ' + "</div></div>");
+          getResponse($speechInput.val());
+          $speechInput.val('Type your question .. ');
+        });
+
+        function switchRecognition() {
+          recognition.onresult = function(event) {
+            var text = "";
+              for (var i = event.resultIndex; i < event.results.length; ++i) {
+                text += event.results[i][0].transcript;
+            }
+            console.log(text);
+            $speechInput.val(text);
+            $recBtn.attr('src', '/images/blueMic32.png');
+            $aiBtn.click();
+          }
+          recognition.start();
+        }
+
+        function getResponse(value) {
+
+          sendText(value)
+          .then(function(response) {
+            var result;
+            try {
+              result = response.result.fulfillment.speech;
+              $dialogBox.append('<div class="inText"><div class="inTextLeft"><img class="img-circle" src="/images/albee32.png"> </div><div class="inTextRight">' + result + '</div></div>');
+              $dialogBox.scrollTop($dialogBox[0].scrollHeight);
+
+              // testing Speech
+              if (typeof speechSynthesis !== "undefined" ) {
+                var msg = new SpeechSynthesisUtterance();
+                var voices = window.speechSynthesis.getVoices();
+                msg.text = result;
+                speechSynthesis.speak(msg);
+                msg = null;
+                speechSynthesis = null;
+              } else {
+                alert('Something goes wrong: speechSynthesis');
+              }
+
+            } catch(error) {
+              $dialogBox.append('<div class="inText"><div class="inTextLeft"><img class="img-circle" src="/images/albee32.png"> </div><div class="inTextRight">' + "Sorry. No Answer! Please try again!" + '</div></div>');
+            }
+
+          })
+          .catch(function(err) {
+            alert ("Something goes wrong: Bot Engine");
+          });
+
+        }
+      });
+    </script>
+
+  </head>
+  <body>
+    <div class="albeechatbot">
+        <div class="albeechatbot__header">
+          <div class="navbar navbar-blend navbar-fixed-top">
+            <div class="navbar-header pull-left">
+              <a class="navbar-brand" href="#">
+                <span class="albLogo"><img class="albNavIcon" src="/images/albee32.png" class="shadow"/> AlBee Chatbot </span>
+              </a>
+            </div>
+            <div class="navbar-header pull-right">
+              <a href="javascript:aboutalbeechatbot();">
+                <span class="glyphicon glyphicon-th iconNav"></span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+        <div class="albeechatbot__content">
+
+          <div id="dialog-container">
+
+            <div class="inText"><div class="inTextLeft"><img class="img-circle" src="/images/albee32.png"></div><div class="inTextRight"><%= messageoftheday %></div></div>
+
+          </div>
+
+        </div>
+        <div class="albeechatbot__footer">
+
+          <div id="input-container">
+            <div id="input-box">
+                <div class="inputForm">
+                  <div class="rightInput">
+                    <button id="inputSend" type="button">Send!</button>
+                  </div>
+                  <div class="leftInput">
+                    <input type="text" id="inputAsk" class="textInput" value="" placeholder="Type your question .. " />
+                  </div>
+                </div>
+                <div class="voiceAction">
+                  <img class="iconSpeech" id="enableSpeech" class="imageMiddle" src="images/blueMic32.png" />
+                  <img class="iconSpeech" id="disableSpeech" class="imageMiddle" src="images/grayMic32.png" />
+                </div>
+                <small style="font-size: .75em;">Albee Chatbot is <a href="#">an opensoure project</a> / Copyright (c) 2017 by <a href="mailto:mt8168@gmail.com">Max Tsai</a> </small>
+            </div>
+          </div>
+
+        </div>
+    </div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/javascripts/jquery-3.2.1.min.js"></script>
+    <script src="/javascripts/bootstrap/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/javascripts/ie10-viewport-bug-workaround.js"></script>
+
+  </body>
+</html>
