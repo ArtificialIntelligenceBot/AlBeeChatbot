@@ -109,7 +109,8 @@ body {
 #dialog-container,
 #menu-container,
 #messages-container,
-#events-container {
+#events-container,
+#geo-container {
   position: fixed;
   top: 32px; /* 20 + 12 */
   bottom: 76px; /* 64 + 12 */
@@ -140,6 +141,12 @@ body {
 
 #events-container {
   z-index: 30;
+  display: none;
+  background: #fff;
+}
+
+#geo-container {
+  z-index: 40;
   display: none;
   background: #fff;
 }

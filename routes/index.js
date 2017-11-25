@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
   T.get('statuses/user_timeline', params, function(error, tweets, response) {
     if (!error) {
       console.log(JSON.parse(JSON.stringify(tweets))[0].text);
-      Tweets = "Max's Tweet: " + JSON.parse(JSON.stringify(tweets))[0].text;
+      Tweets = "MOTD (Max's Tweet): " + JSON.parse(JSON.stringify(tweets))[0].text;
 
       res.render('index', {
         title: 'AlBeeChatbot',

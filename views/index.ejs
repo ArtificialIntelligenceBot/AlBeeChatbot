@@ -65,15 +65,16 @@
   <body>
     <div class="albeechatbot">
         <div class="albeechatbot__header">
-          <div class="navbar navbar-blend navbar-fixed-top">
+          <div class="navbar navbar-blend">
             <div class="navbar-header pull-left">
               <a class="navbar-brand" href="#">
-                <span class="albLogo"><img class="albNavIcon" src="/images/albee32.png" class="shadow"/> AlBee Chatbot </span>
+                <span class="getDialogs albLogo"><img class="albNavIcon" src="/images/albee32.png" class="shadow"/> AlBee Chatbot </span>
               </a>
             </div>
             <div class="navbar-header pull-right">
 
                 <span id="getMessages" class="glyphicon glyphicon-comment iconNav" title="Messages"></span>
+                <span id="getGeo" class="glyphicon glyphicon-map-marker iconNav" title="Way Finding"></span>
                 <span id="getEvents" class="glyphicon glyphicon-calendar iconNav" title="Events"></span>
                 <span class="iconNav">&nbsp;</span>
                 <span id="speechSynthes" class="glyphicon glyphicon-volume-off iconNav" title="Speech Synthes"></span>
@@ -107,21 +108,25 @@
                 of speech, seizures, and walking and balance disorders. Individuals with Angelman
                 syndrome will require life-long care.
               </p>
-
-
-
-
-
             </div>
 
             <div id="messages-container">
               [ <span class="getDialogs glyphicon glyphicon-remove" style="color: #4267b2;" title="Close"></span> ]
-              <p>This is the Message Page</p>
+              <div class="messagesOfTheDay">
+                <a class="twitter-timeline" data-height="800" href="https://twitter.com/MaxTsai?ref_src=twsrc%5Etfw">Messages by Max Tsai</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+              </div>
             </div>
 
             <div id="events-container">
               [ <span class="getDialogs glyphicon glyphicon-remove" style="color: #4267b2;" title="Close"></span> ]
               <p>This is the Events Page</p>
+            </div>
+
+            <div id="geo-container">
+              [ <span class="getDialogs glyphicon glyphicon-remove" style="color: #4267b2;" title="Close"></span> ]
+              <p>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d204504.28568339816!2d-119.93464816289489!3d36.78545131889241!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80945de1549e4e9d%3A0x7b12406449a3b811!2sFresno%2C+CA!5e0!3m2!1sen!2sus!4v1511644656151" width="100%" frameborder="0" style="border:0; min-height:300px;"></iframe>
+              </p>
             </div>
 
           </div>

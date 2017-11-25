@@ -72,17 +72,13 @@ $(document).ready(function() {
     $( this ).toggleClass( "glyphicon-volume-up" );
   });
 
-  $( "#aboutalbeechatbot" ).click(function() {
-    alert('Show About` Menu');
-  });
-
-
   // initial HIDDEN
   function hideAllLayers() {
     // $( "#dialog-container" ).();
     $( "#messages-container" ).hide();
     $( "#events-container" ).hide();
     $( "#menu-container" ).hide();
+    $( "#geo-container" ).hide();
   }
 
   $( ".getDialogs" ).click(function() {
@@ -104,6 +100,10 @@ $(document).ready(function() {
     $( "#events-container" ).toggle();
   });
 
+  $( "#getGeo" ).click(function() {
+    hideAllLayers();
+    $( "#geo-container" ).toggle();
+  });
   // =========
 
   function switchRecognition() {
