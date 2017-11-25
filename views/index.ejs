@@ -49,6 +49,7 @@
     <script src="/javascripts/dialogflow.js"></script>
     <script src="/javascripts/bootstrap/bootstrap.min.js"></script>
 
+    <script src="/javascripts/albchatbot.js"></script>
 
     <!-- Progress Web App // -->
     <script>
@@ -59,132 +60,6 @@
       }
     </script>
     <!-- // Progress Web App -->
-
-    <script type="text/javascript">
-      function aboutalbeechatbot() {
-        var answer = confirm ("AlBee (A.I.) Chatbot is an open source project. Please click on OK for more information.")
-        if (answer)
-        window.location="https://github.com/ArtificialIntelligenceBot/AlBeeChatbot";
-      }
-    </script>
-
-    <script>
-
-      $(document).ready(function() {
-
-        $speechInput = $("#inputAsk");
-        $recBtn = $("#enableSpeech");
-        $aiBtn = $("#inputSend");
-        $grayBtn = $("#disableSpeech");
-
-        $dialogBox = $("#dialog-container");
-
-        // initial Connecion to AI Platform
-        initDialogflow();
-
-        // using HTML5 Speech API - SpeechRecognization
-        /*
-        var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
-        var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
-        var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
-        */
-
-        if ( typeof webkitSpeechRecognition !== "undefined" ) {
-          $grayBtn.hide();
-          $recBtn.show();
-          var recognition = new webkitSpeechRecognition();
-          recognition.continuous = false;
-          recognition.interimResults = false;
-        } else {
-          $recBtn.hide();
-          $grayBtn.show();
-        }
-
-        // using HTML5 Speech API - SpeechSynthesis
-        // if ( typeof speechSynthesis !== "undefined" ) {
-        //  var msg = new SpeechSynthesisUtterance();
-        //  var voices = window.speechSynthesis.getVoices();
-        // }
-
-        // Press Enter Key to Send!
-        $speechInput.keypress(function(event) {
-          if (event.which == 13) {
-            event.preventDefault();
-            $dialogBox.append('<div class="outText"><div class="outTextLeft"><div class="outTextLeftInside">' + $speechInput.val() + '</div></div><div class="outTextLRight"> <img class="img-circle" src="/images/guest.png" width="32px"> ' + "</div></div>");
-            $dialogBox.scrollTop($dialogBox[0].scrollHeight);
-            getResponse($speechInput.val());
-            $speechInput.val('');
-            $speechInput.attr("placeholder", "Type your question ..");
-          }
-        });
-
-        // This might not be necessary anymore - updated with Placeholder
-        $speechInput.on("click", function(event) {
-            $speechInput.val('');
-        });
-
-        $recBtn.on("click", function(event) {
-          $speechInput.val('Listening');
-          switchRecognition();
-          $recBtn.attr('src', '/images/redMic32.png');
-        });
-
-
-        $aiBtn.on("click", function(event) {
-          // $dialogBox.append('<div class="inText"><b> You: </b>' + $speechInput.val() + "</div>");
-          $dialogBox.append('<div class="outText"><div class="outTextLeft"><div class="outTextLeftInside">' + $speechInput.val() + '</div></div><div class="outTextLRight"> <img class="img-circle" src="/images/guest.png" width="32px"> ' + "</div></div>");
-          getResponse($speechInput.val());
-          $speechInput.val('Type your question .. ');
-        });
-
-        function switchRecognition() {
-          recognition.onresult = function(event) {
-            var text = "";
-              for (var i = event.resultIndex; i < event.results.length; ++i) {
-                text += event.results[i][0].transcript;
-            }
-            console.log(text);
-            $speechInput.val(text);
-            $recBtn.attr('src', '/images/blueMic32.png');
-            $aiBtn.click();
-          }
-          recognition.start();
-        }
-
-        function getResponse(value) {
-
-          sendText(value)
-          .then(function(response) {
-            var result;
-            try {
-              result = response.result.fulfillment.speech;
-              $dialogBox.append('<div class="inText"><div class="inTextLeft"><img class="img-circle" src="/images/albee32.png"> </div><div class="inTextRight">' + result + '</div></div>');
-              $dialogBox.scrollTop($dialogBox[0].scrollHeight);
-
-              // testing Speech
-              if (typeof speechSynthesis !== "undefined" ) {
-                var msg = new SpeechSynthesisUtterance();
-                var voices = window.speechSynthesis.getVoices();
-                msg.text = result;
-                speechSynthesis.speak(msg);
-                msg = null;
-                speechSynthesis = null;
-              } else {
-                alert('Something goes wrong: speechSynthesis');
-              }
-
-            } catch(error) {
-              $dialogBox.append('<div class="inText"><div class="inTextLeft"><img class="img-circle" src="/images/albee32.png"> </div><div class="inTextRight">' + "Sorry. No Answer! Please try again!" + '</div></div>');
-            }
-
-          })
-          .catch(function(err) {
-            alert ("Something goes wrong: Bot Engine");
-          });
-
-        }
-      });
-    </script>
 
   </head>
   <body>
@@ -197,24 +72,50 @@
               </a>
             </div>
             <div class="navbar-header pull-right">
-              <a href="javascript:aboutalbeechatbot();">
-                <span class="glyphicon glyphicon-th iconNav"></span>
+
+                <span id="getMessages" class="glyphicon glyphicon-comment iconNav" title="Messages"></span>
+                <span id="getEvents" class="glyphicon glyphicon-calendar iconNav" title="Events"></span>
+                <span class="iconNav">&nbsp;</span>
+                <span id="speechSynthes" class="glyphicon glyphicon-volume-off iconNav" title="Speech Synthes"></span>
+                <span class="iconNav">&nbsp;</span>
+                <button type="button" class="btn-xs btn-outline-secondary">
+                <span id="getMenu" class="glyphicon glyphicon-menu-hamburger iconNav" style="color: #4267b2;" title="Menu"></span>
+                </button>
+
               </a>
             </div>
           </div>
 
         </div>
+
+        <!-- Content -->
         <div class="albeechatbot__content">
 
           <div id="dialog-container">
-
             <div class="inText"><div class="inTextLeft"><img class="img-circle" src="/images/albee32.png"></div><div class="inTextRight"><%= messageoftheday %></div></div>
+
+            <div id="menu-container">
+              [ <span class="getDialogs glyphicon glyphicon-remove" style="color: #4267b2;" title="Close"></span> ]
+              <p>This is the Menu Page</p>
+            </div>
+
+            <div id="messages-container">
+              [ <span class="getDialogs glyphicon glyphicon-remove" style="color: #4267b2;" title="Close"></span> ]
+              <p>This is the Message Page</p>
+            </div>
+
+            <div id="events-container">
+              [ <span class="getDialogs glyphicon glyphicon-remove" style="color: #4267b2;" title="Close"></span> ]
+              <p>This is the Events Page</p>
+            </div>
 
           </div>
 
-        </div>
-        <div class="albeechatbot__footer">
 
+
+        </div>
+
+        <div class="albeechatbot__footer">
           <div id="input-container">
             <div id="input-box">
                 <div class="inputForm">
@@ -232,8 +133,8 @@
                 <small style="font-size: .75em;">Albee Chatbot is <a href="#">an opensoure project</a> / Copyright (c) 2017 by <a href="mailto:mt8168@gmail.com">Max Tsai</a> </small>
             </div>
           </div>
-
         </div>
+
     </div>
     <!-- Bootstrap core JavaScript
     ================================================== -->

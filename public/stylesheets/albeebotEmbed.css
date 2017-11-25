@@ -77,6 +77,12 @@ body {
   padding: 0px 10px 0px 10px;
 }
 
+.navbar-header .btn-xs {
+      font-size: 0.8em;
+      border-radius: 1px;
+      padding: 0px 1px 0px 1px;
+}
+
 /* Special effects - Optional */
 .shadow {
   -webkit-box-shadow: 0 6px 4px -4px black;
@@ -100,7 +106,10 @@ body {
   position:relative;
 }
 
-#dialog-container {
+#dialog-container,
+#menu-container,
+#messages-container,
+#events-container {
   position: fixed;
   top: 32px; /* 20 + 12 */
   bottom: 76px; /* 64 + 12 */
@@ -111,70 +120,94 @@ body {
   padding-right: 20px;
 }
 
-  .rightHeader {
-    width: 180px;
-    float: right;
-    padding-top: 10px;
-    text-align: right;
-  }
+#dialog-container {
+  z-index: 0;
+  display: block;
+  background: #fff;
+}
 
-  .leftHeader {
-      float: none;
-      width: auto;
-      overflow: hidden;
-      padding-left: 10px;
-  }
+#menu-container {
+  z-index: 10;
+  display: none;
+  background: #fff;
+}
 
-  .inText {
-    width: 90%;
-    margin-bottom: 5px;
-    position:relative;
-    float:left;
-  }
+#messages-container {
+  z-index: 20;
+  display: none;
+  background: #fff;
+}
 
-  .inTextLeft {
-    float: left; /* <-- fixes the left panel to prevent from scrolling */
-    width:20px;
-    text-align: left;
-  }
+#events-container {
+  z-index: 30;
+  display: none;
+  background: #fff;
+}
 
-  .inTextRight {
-    margin-left:36px;
-    background:yellow;
-    border: 1px solid #000;
-    background: #f1f0ea;
-    border-radius: 10px;
-    padding: 10px;
-  }
+.rightHeader {
+  width: 180px;
+  float: right;
+  padding-top: 10px;
+  text-align: right;
+}
 
-  .outText {
-   width: 90%;
-   position:relative;
-   float:right;
-   margin-bottom: 5px;
-   color: #fff;
-  }
+.leftHeader {
+    float: none;
+    width: auto;
+    overflow: hidden;
+    padding-left: 10px;
+}
 
-  .outTextLeft {
-    float:left;
-    width:100%;
-  }
+.inText {
+  width: 90%;
+  margin-bottom: 5px;
+  position:relative;
+  float:left;
+}
 
-  .outTextLeftInside {
-    margin-right: 36px;
-    border: 1px solid #73AD21;
-    background: #0084ff;
-    border-radius: 10px;
-    padding: 10px;
+.inTextLeft {
+  float: left; /* <-- fixes the left panel to prevent from scrolling */
+  width:20px;
+  text-align: left;
+}
 
-  }
+.inTextRight {
+  margin-left:36px;
+  background:yellow;
+  border: 1px solid #000;
+  background: #f1f0ea;
+  border-radius: 10px;
+  padding: 10px;
+}
 
-  .outTextLRight {
-    float: right;
-    width: 36px;
-    margin-left: -72px;
-    border: solid;
-  }
+.outText {
+ width: 90%;
+ position:relative;
+ float:right;
+ margin-bottom: 5px;
+ color: #fff;
+}
+
+.outTextLeft {
+  float:left;
+  width:100%;
+}
+
+.outTextLeftInside {
+  margin-right: 36px;
+  border: 1px solid #73AD21;
+  background: #0084ff;
+  border-radius: 10px;
+  padding: 10px;
+
+}
+
+.outTextLRight {
+  float: right;
+  width: 36px;
+  margin-left: -72px;
+  border: solid;
+}
 
 /* Input Form */
 #input-container {
@@ -223,10 +256,10 @@ body {
 }
 
 .leftInput {
-    float: none;
-    width: auto;
-    overflow: hidden;
-    padding-left: 10px;
+  float: none;
+  width: auto;
+  overflow: hidden;
+  padding-left: 10px;
 }​​
 
 .imageMiddle {
@@ -251,5 +284,5 @@ input:focus,
 select:focus,
 textarea:focus,
 button:focus {
-    outline: none;
+  outline: none;
 }
