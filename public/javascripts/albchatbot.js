@@ -38,7 +38,7 @@ $(document).ready(function() {
   $speechInput.keypress(function(event) {
     if (event.which == 13) {
       event.preventDefault();
-      $dialogBox.append('<div class="outText"><div class="outTextLeft"><div class="outTextLeftInside">' + $speechInput.val() + '</div></div><div class="outTextLRight"> <img class="img-circle" src="/images/guest.png" width="32px"> ' + "</div></div>");
+      $dialogBox.append('<div class="outText"><div class="outTextLeft"><div class="outTextLeftInside">' + $speechInput.val() + '</div></div><div class="outTextLRight"> <img class="img-circle" src="/images/boticons/guest.png" width="32px"> ' + "</div></div>");
       $dialogBox.scrollTop($dialogBox[0].scrollHeight);
       getResponse($speechInput.val());
       $speechInput.val('');
@@ -60,7 +60,7 @@ $(document).ready(function() {
 
   $aiBtn.on("click", function(event) {
     // $dialogBox.append('<div class="inText"><b> You: </b>' + $speechInput.val() + "</div>");
-    $dialogBox.append('<div class="outText"><div class="outTextLeft"><div class="outTextLeftInside">' + $speechInput.val() + '</div></div><div class="outTextLRight"> <img class="img-circle" src="/images/guest.png" width="32px"> ' + "</div></div>");
+    $dialogBox.append('<div class="outText"><div class="outTextLeft"><div class="outTextLeftInside">' + $speechInput.val() + '</div></div><div class="outTextLRight"> <img class="img-circle" src="/images/boticons/guest.png" width="32px"> ' + "</div></div>");
     getResponse($speechInput.val());
     $speechInput.val('Type your question .. ');
   });
@@ -127,7 +127,7 @@ $(document).ready(function() {
       var result;
       try {
         result = response.result.fulfillment.speech;
-        $dialogBox.append('<div class="inText"><div class="inTextLeft"><img class="img-circle" src="/images/albee32.png"> </div><div class="inTextRight">' + result + '</div></div>');
+        $dialogBox.append('<div class="inText"><div class="inTextLeft"><img class="img-circle" src="/images/boticons/AlBeeChatAngelBot32.png"> </div><div class="inTextRight">' + result + '</div></div>');
         $dialogBox.scrollTop($dialogBox[0].scrollHeight);
 
         // testing Speech
@@ -145,7 +145,7 @@ $(document).ready(function() {
         }
 
       } catch(error) {
-        $dialogBox.append('<div class="inText"><div class="inTextLeft"><img class="img-circle" src="/images/albee32.png"> </div><div class="inTextRight">' + "Sorry. No Answer! Please try again!" + '</div></div>');
+        $dialogBox.append('<div class="inText"><div class="inTextLeft"><img class="img-circle" src="/images/boticons/AlBeeChatAngelBot32.png"> </div><div class="inTextRight">' + "Sorry. No Answer! Please try again!" + '</div></div>');
       }
 
     })
