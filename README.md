@@ -2,6 +2,10 @@
 
 ```__For derivatives or redistribution of this opensource work, please include the support message (SUPPORT.md) below.__```
 
+
+![alt text](https://github.com/ArtificialIntelligenceBot/AlBeeChatbot/blob/master/config/artwork/AlBeeChatAngelBot128.png?raw=true "AlBee Love Angels Chatbot Logo")
+
+
 ## What is AlBeeChatbot
 AlBee Chatbot is a feature-rich Customer Engagement platform designed to deliver great customer experience through its optimized Conversational UX (User Experience) and Interact Analysis — gaining genuine insight into the mind-set of their target audience. AlBee Chatbot further connects customers with its integrated Branding and Marketing Messaging tools.
 
