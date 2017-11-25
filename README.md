@@ -3,7 +3,7 @@
 ```__For derivatives or redistribution of this opensource work, please include the support message (SUPPORT.md) below.__```
 
 
-![alt text](https://github.com/ArtificialIntelligenceBot/AlBeeChatbot/blob/master/config/artwork/AlBeeChatAngelBot128.png?raw=true "AlBee Love Angels Chatbot Logo")
+![alt text](https://github.com/ArtificialIntelligenceBot/AlBeeChatbot/blob/master/config/artwork/AlBeeChatAngelBot680.png?raw=true "AlBee Love Angels Chatbot Logo")
 
 
 ## What is AlBeeChatbot
