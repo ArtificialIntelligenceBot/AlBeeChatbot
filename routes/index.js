@@ -46,25 +46,25 @@ router.get('/bot/diagflow', function(req, res, next) {
 
     }
   });
+});
 
-  /* GET home page with bot - Lex. */
-  router.get('/bot/lex', function(req, res, next) {
+/* GET home page with bot - Lex. */
+router.get('/bot/lex', function(req, res, next) {
 
-    var Tweets;
+  var Tweets;
 
-    T.get('statuses/user_timeline', params, function(error, tweets, response) {
-      if (!error) {
-        console.log(JSON.parse(JSON.stringify(tweets))[0].text);
-        Tweets = "MOTD (Max's Tweet): " + JSON.parse(JSON.stringify(tweets))[0].text;
+  T.get('statuses/user_timeline', params, function(error, tweets, response) {
+    if (!error) {
+      console.log(JSON.parse(JSON.stringify(tweets))[0].text);
+      Tweets = "MOTD (Max's Tweet): " + JSON.parse(JSON.stringify(tweets))[0].text;
 
-        res.render('index-lex', {
-          title: 'AlBeeChatbot',
-          messageoftheday: Tweets
-        });
+      res.render('index-lex', {
+        title: 'AlBeeChatbot',
+        messageoftheday: Tweets
+      });
 
-      }
-    });
-
+    }
+  });
 });
 
 module.exports = router;
