@@ -1,0 +1,76 @@
+/**
+ * -----------------------------------------------
+ *
+ * AlBeeCharbot - an Opensource A.I. Chatbot
+ * ==  A Smart Virtual Stduent Assistant ==
+ * https://github.com/ArtificialIntelligenceBot/AlBeeChatbot
+ *
+ * -----------------------------------------------
+ *
+ * App Frontend:
+ *   - node.js (https://nodejs.org)
+ *   - Progressive Web App (https://en.wikipedia.org/wiki/Progressive_web_app)
+ * A.I.
+ *   Google - DialogFlow aka. API.ai (https://dialogflow.com)
+ *   work in progress:
+ *     - RASA (https://rasa.ai/)
+ *     - AWS Lex (https://aws.amazon.com/lex)
+ * -----------------------------------------------
+ *
+ * This source code is licensed under the BSD-style license.
+ * Copyright 2007- by Max Tsai (mt8168@gmail.com)
+ *
+ */
+"use strict";
+
+var lexruntime, lexUserId, sessionAttributes, botName;
+
+function initBot() {
+  // Initialize the Amazon Cognito credentials provider
+  AWS.config.region = 'us-east-1'; // Region
+  AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+  // Provide your Pool Id here
+  	IdentityPoolId: '***************************',
+  });
+  lexruntime = new AWS.LexRuntime();
+  lexUserId = 'chatbot-demo' + Date.now();
+  sessionAttributes = {};
+  botName = '############';
+}
+
+function sendText(text) {
+
+  // send it to the Lex runtime
+	var params = {
+		botAlias: '$LATEST',
+		botName: botName,
+		inputText: text,
+		userId: lexUserId,
+		sessionAttributes: sessionAttributes
+	};
+
+  // craete a Promise to match Diagflow
+  var client = new Promise(
+      function (resolve, reject) {
+
+        lexruntime.postText(params, function(err, data) {
+          if (err) {
+            var reason = new Error(err.message)
+            console.log(err, err.stack);
+            reject(reason);
+          }
+          if (data) {
+            // capture the sessionAttributes for the next cycle
+            sessionAttributes = data.sessionAttributes;
+
+            // show response and/or error/dialog status
+            resolve(data);
+
+          }
+        });
+      }
+  );
+
+  return client;
+
+}

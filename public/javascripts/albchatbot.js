@@ -8,7 +8,8 @@ $(document).ready(function() {
   $dialogBox = $("#dialog-container");
 
   // initial Connecion to AI Platform
-  initDialogflow();
+  //initDialogflow();
+  initBot();
 
   // using HTML5 Speech API - SpeechRecognization
   /*
@@ -126,7 +127,15 @@ $(document).ready(function() {
     .then(function(response) {
       var result;
       try {
-        result = response.result.fulfillment.speech;
+
+        if ( typeof response.result !== "undefined" ) {
+          // diagflow
+          result = response.result.fulfillment.speech;
+        } else {
+          // lex
+          result = response.message;
+        }
+
         $dialogBox.append('<div class="inText"><div class="inTextLeft"><img class="img-circle" src="/images/boticons/AlBeeChatAngelBot32.png"> </div><div class="inTextRight">' + result + '</div></div>');
         $dialogBox.scrollTop($dialogBox[0].scrollHeight);
 
@@ -145,12 +154,12 @@ $(document).ready(function() {
         }
 
       } catch(error) {
-        $dialogBox.append('<div class="inText"><div class="inTextLeft"><img class="img-circle" src="/images/boticons/AlBeeChatAngelBot32.png"> </div><div class="inTextRight">' + "Sorry. No Answer! Please try again!" + '</div></div>');
+        $dialogBox.append('<div class="inText"><div class="inTextLeft"><img class="img-circle" src="/images/boticons/AlBeeChatAngelBot32.png"> </div><div class="inTextRight">' + "Sorry. No Answer! Please try again!" + error + '</div></div>');
       }
 
     })
     .catch(function(err) {
-      alert ("Something goes wrong: Bot Engine");
+      alert ("Something goes wrong: Bot Engine" + err);
     });
 
   }

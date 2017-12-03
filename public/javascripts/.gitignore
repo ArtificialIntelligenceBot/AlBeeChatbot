@@ -1,2 +1,4 @@
 #skip with KEY information
 dialogflow.js
+config-dialogflow.js
+config-lex.js

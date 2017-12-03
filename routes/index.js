@@ -17,9 +17,11 @@ router.get('/', function(req, res, next) {
   T.get('statuses/user_timeline', params, function(error, tweets, response) {
     if (!error) {
       console.log(JSON.parse(JSON.stringify(tweets))[0].text);
-      Tweets = "MOTD (Max's Tweet): " + JSON.parse(JSON.stringify(tweets))[0].text;
+      // Tweets = "MOTD (Max's Tweet): " + JSON.parse(JSON.stringify(tweets))[0].text;
 
-      res.render('index-diagflow', {
+      Tweets = '<h2>This is a BotOfBots</h2> You can connect to <a href="/bot/lex"> AWS Lex Bot </a> or <a href="/bot/DialogFlow"> Google DialogFlow bot</a><br/>'
+
+      res.render('index-dialogflow', {
         title: 'AlBeeChatbot',
         messageoftheday: Tweets
       });
@@ -30,7 +32,7 @@ router.get('/', function(req, res, next) {
 });
 
 /* GET home page with bot - Diagflow. */
-router.get('/bot/diagflow', function(req, res, next) {
+router.get('/bot/dialogflow', function(req, res, next) {
 
   var Tweets;
 
@@ -39,7 +41,7 @@ router.get('/bot/diagflow', function(req, res, next) {
       console.log(JSON.parse(JSON.stringify(tweets))[0].text);
       Tweets = "MOTD (Max's Tweet): " + JSON.parse(JSON.stringify(tweets))[0].text;
 
-      res.render('index-diagflow', {
+      res.render('index-dialogflow', {
         title: 'AlBeeChatbot',
         messageoftheday: Tweets
       });
