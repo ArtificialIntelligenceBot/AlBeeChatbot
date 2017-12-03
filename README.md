@@ -1,7 +1,8 @@
-# AlBeeChatbot - Flexknow/ArtificialIntelligenceBot
+# AlBeeChatbot - ArtificialIntelligenceBot
 
-```__For derivatives or redistribution of this opensource work, please include the support message (SUPPORT.md) below.__```
+```__For derivatives or redistribution of this opensource work, please include the message to support the awareness of People with Special Needs (SUPPORT.md) below.__```
 
+# BotOFBots is now working with DialogFlow (Google) and LEX (AWS)
 
 ![alt text](https://github.com/ArtificialIntelligenceBot/AlBeeChatbot/blob/master/config/artwork/AlBeeChatAngelBot680.png?raw=true "AlBee Love Angels Chatbot Logo")
 
